@@ -1,19 +1,22 @@
-class solution{
-    public int reverse(int x){
-        if(x==0)
-        return 0:
-        int rev=0;
-        int z==math.abs(x);
-        while(z>0){
-            int rem=z%10;
-            rev=rev*10+rem;
-            z=z/10;
+class Solution {
+    public int reverse(int x) {
+        int result = 0;
+        while (x != 0) {
+            int digit = x % 10;
+            x /= 10;
+
+            // Check overflow before actually multiplying
+            if (result > Integer.MAX_VALUE / 10 || 
+                (result == Integer.MAX_VALUE / 10 && digit > 7)) {
+                return 0;
+            }
+            if (result < Integer.MIN_VALUE / 10 || 
+                (result == Integer.MIN_VALUE / 10 && digit < -8)) {
+                return 0;
+            }
+
+            result = result * 10 + digit;
         }
-        StringBuffer s=new Stringbuffer(""+rev);
-        s.reverae();
-        if((""+Math.abs(x)).contains(s))
-        return (x/Math.abs(x))*rev;
-        else
-        return 0;
+        return result;
     }
 }
