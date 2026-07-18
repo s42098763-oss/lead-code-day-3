@@ -1,0 +1,41 @@
+class Solution {
+    public boolean isNumber(String s) {
+        int n = s.length();
+        int i = 0;
+
+        boolean sawDigit = false;
+        boolean sawDot = false;
+        boolean sawExp = false;
+
+        // optional leading sign
+        if (i < n && (s.charAt(i) == '+' || s.charAt(i) == '-')) {
+            i++;
+        }
+
+        while (i < n) {
+            char c = s.charAt(i);
+
+            if (Character.isDigit(c)) {
+                sawDigit = true;
+                i++;
+            } else if (c == '.') {
+                if (sawDot || sawExp) return false; // only one dot, and not after 'e'
+                sawDot = true;
+                i++;
+            } else if (c == 'e' || c == 'E') {
+                if (sawExp || !sawDigit) return false; // only one 'e', must have digits before it
+                sawExp = true;
+                sawDigit = false; // reset: need digits after 'e' too
+                i++;
+                // optional sign after e
+                if (i < n && (s.charAt(i) == '+' || s.charAt(i) == '-')) {
+                    i++;
+                }
+            } else {
+                return false; // invalid character
+            }
+        }
+
+        return sawDigit;
+    }
+}
