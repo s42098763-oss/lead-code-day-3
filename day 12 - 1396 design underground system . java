@@ -1,9 +1,9 @@
 class UndergroundSystem {
 
-    // Stores passenger check-in information
+    
     private Map<Integer, CheckIn> checkInMap;
 
-    // Stores route statistics
+    
     private Map<String, Route> routeMap;
 
     public UndergroundSystem() {
@@ -42,7 +42,7 @@ class UndergroundSystem {
         return (double) route.totalTime / route.tripCount;
     }
 
-    // Helper class for check-in information
+    
     class CheckIn {
         String station;
         int time;
@@ -53,7 +53,7 @@ class UndergroundSystem {
         }
     }
 
-    // Helper class for route statistics
+    
     class Route {
         int totalTime = 0;
         int tripCount = 0;
